@@ -43,7 +43,7 @@ var symbolTemplates = map[string]Symbols{
 var shellInfos = map[string]ShellInfo{
 	"bash": {
 		colorTemplate:    "\\[\\e%s\\]",
-		rootIndicator:    " \\$ ",
+		rootIndicator:    " ∴ ",
 		escapedBackslash: `\\\\`,
 		escapedBacktick:  "\\`",
 		escapedDollar:    `\$`,

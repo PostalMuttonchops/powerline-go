@@ -8,10 +8,16 @@ import (
 
 const ellipsis = "\u2026"
 
+// type pathSegment struct {
+// 	path     string
+// 	home     bool
+// 	root     bool
+// 	ellipsis bool
+// }
+
 type pathSegment struct {
 	path     string
 	home     bool
-	root     bool
 	ellipsis bool
 }
 
@@ -28,8 +34,11 @@ func cwdToPathSegments(cwd string) []pathSegment {
 	} else if cwd == "/" {
 		pathSegments = append(pathSegments, pathSegment{
 			path: "/",
-			root: true,
 		})
+		// pathSegments = append(pathSegments, pathSegment{
+		// 	path: "/",
+		// 	root: true,
+		// })
 	}
 
 	cwd = strings.Trim(cwd, "/")

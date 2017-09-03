@@ -73,6 +73,24 @@ func getValidCwd() string {
 	return cwd
 }
 
+// var modules = map[string](func(*powerline)){
+// 	"cwd":      segmentCwd,
+// 	"docker":   segmentDocker,
+// 	"exit":     segmentExitCode,
+// 	"git":      segmentGit,
+// 	"gitlite":  segmentGitLite,
+// 	"hg":       segmentHg,
+// 	"host":     segmentHost,
+// 	"jobs":     segmentJobs,
+// 	"perlbrew": segmentPerlbrew,
+// 	"perms":    segmentPerms,
+// 	"root":     segmentRoot,
+// 	"ssh":      segmentSsh,
+// 	"time":     segmentTime,
+// 	"user":     segmentUser,
+// 	"venv":     segmentVirtualEnv,
+// }
+
 var modules = map[string](func(*powerline)){
 	"cwd":      segmentCwd,
 	"docker":   segmentDocker,
@@ -84,13 +102,11 @@ var modules = map[string](func(*powerline)){
 	"jobs":     segmentJobs,
 	"perlbrew": segmentPerlbrew,
 	"perms":    segmentPerms,
-	"root":     segmentRoot,
 	"ssh":      segmentSsh,
 	"time":     segmentTime,
 	"user":     segmentUser,
 	"venv":     segmentVirtualEnv,
 }
-
 func main() {
 	args := args{
 		CwdMode: flag.String("cwd-mode", "fancy",
@@ -120,15 +136,25 @@ func main() {
 			"Set this to your shell type\n"+
 				"    	(valid choices: bare, bash, zsh)\n"+
 				"       "),
+		// Modules: flag.String("modules",
+		// 	"venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root",
+		// 	"The list of modules to load. Separate with ','\n"+
+		// 		"    	(valid choices: cwd, docker, exit, git, gitlite, hg, host, jobs, perlbrew, perms, root, ssh, time, user, venv)\n"+
+		// 		"       "),
+		// Priority: flag.String("priority",
+		// 	"root,cwd,user,host,ssh,perms,git-branch,git-status,hg,jobs,exit",
+		// 	"Segments sorted by priority, if not enough space exists, the least priorized segments are removed first. Separate with ','\n"+
+		// 		"    	(valid choices: cwd, docker, exit, git-branch, git-status, hg, host, jobs, perlbrew, perms, root, ssh, time, user, venv)\n"+
+		// 		"       "),
 		Modules: flag.String("modules",
-			"venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root",
+			"venv,user,host,ssh,cwd,perms,git,hg,jobs,exit",
 			"The list of modules to load. Separate with ','\n"+
-				"    	(valid choices: cwd, docker, exit, git, gitlite, hg, host, jobs, perlbrew, perms, root, ssh, time, user, venv)\n"+
+				"    	(valid choices: cwd, docker, exit, git, gitlite, hg, host, jobs, perlbrew, perms, ssh, time, user, venv)\n"+
 				"       "),
 		Priority: flag.String("priority",
-			"root,cwd,user,host,ssh,perms,git-branch,git-status,hg,jobs,exit",
+			"cwd,user,host,ssh,perms,git-branch,git-status,hg,jobs,exit",
 			"Segments sorted by priority, if not enough space exists, the least priorized segments are removed first. Separate with ','\n"+
-				"    	(valid choices: cwd, docker, exit, git-branch, git-status, hg, host, jobs, perlbrew, perms, root, ssh, time, user, venv)\n"+
+				"    	(valid choices: cwd, docker, exit, git-branch, git-status, hg, host, jobs, perlbrew, perms, ssh, time, user, venv)\n"+
 				"       "),
 		MaxWidthPercentage: flag.Int("max-width",
 			50,
