@@ -8,6 +8,7 @@ import (
 
 func segmentVirtualEnv(p *powerline) {
 	var env string
+	var root string
 	if env == "" {
 		env, _ = os.LookupEnv("VIRTUAL_ENV")
 	}
@@ -17,7 +18,8 @@ func segmentVirtualEnv(p *powerline) {
 	if env == "" {
 		env, _ = os.LookupEnv("CONDA_DEFAULT_ENV")
 	}
-	if env == "" {
+	root, _ = os.LookupEnv("CONDA_DEFAULT_ENV")
+	if env == "" || root == "root" {
 		return
 	} else {
 		envName := path.Base(env)
